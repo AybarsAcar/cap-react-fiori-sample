@@ -12,6 +12,7 @@ import {
   FlexBoxJustifyContent,
   AnalyticalTable,
   FlexBoxWrap,
+  Button,
 } from "@ui5/webcomponents-react";
 import { BarChart, LineChart } from "@ui5/webcomponents-react-charts";
 import { MockData } from "../mock/data.ts";
@@ -22,6 +23,7 @@ import listIcon from "@ui5/webcomponents-icons/dist/list.js";
 import ValueState from "@ui5/webcomponents-base/dist/types/ValueState.js";
 import tableViewIcon from "@ui5/webcomponents-icons/dist/table-view.js";
 import { useNavigate } from "react-router-dom";
+import DataExtractor from "../utils/DataExtractor.ts";
 
 enum ChartType {
   LineChart,
@@ -173,10 +175,25 @@ export function Home() {
 
       <Card
         header={
-          <CardHeader
-            titleText="AnalyticalTable"
-            avatar={<Icon name={tableViewIcon} />}
-          />
+          <FlexBox
+            justifyContent={FlexBoxJustifyContent.SpaceBetween}
+            alignItems="Center"
+          >
+            <CardHeader
+              titleText="AnalyticalTable"
+              avatar={<Icon name={tableViewIcon} />}
+            />
+            <Button
+              style={{ marginRight: "2rem" }}
+              onClick={() => {
+                DataExtractor.exportCSV(
+                  DataExtractor.jsonToCSV(MockData.tableData),
+                );
+              }}
+            >
+              Export
+            </Button>
+          </FlexBox>
         }
         style={{ maxWidth: "900px", margin: "2rem" }}
       >
