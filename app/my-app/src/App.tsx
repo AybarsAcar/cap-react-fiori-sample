@@ -1,6 +1,8 @@
 import employeeIcon from "@ui5/webcomponents-icons/dist/employee.js";
 import { Avatar, ShellBar } from "@ui5/webcomponents-react";
+import { HashRouter } from "react-router-dom";
 import UglApp from "./pages/UglApp.tsx";
+
 function App() {
   return (
     <>
@@ -14,7 +16,9 @@ function App() {
         primaryTitle="Analytical Dashboard"
         profile={<Avatar icon={employeeIcon} />}
       />
-      <UglApp />
+      <HashRouter>
+        <UglApp />
+      </HashRouter>
     </>
   );
 }
